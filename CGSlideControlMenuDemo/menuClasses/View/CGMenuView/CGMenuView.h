@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CGMenuViewDelegate <NSObject>
+
+- (void)infoViewClick:(UIButton *)sender;
+- (void)outInfoViewClick:(UITapGestureRecognizer *)sender;
+- (void)menuView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
 @interface CGMenuView : UIView
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
@@ -25,6 +32,8 @@
 
 @property (nonatomic, copy) NSArray *prototypeEntitiesFromJSON;//
 @property (nonatomic, copy) NSArray *userInfoFromJSON;
+
+@property (weak, nonatomic) id<CGMenuViewDelegate> delegate;
 
 +(instancetype)loadMenuViewFromXib;
 
