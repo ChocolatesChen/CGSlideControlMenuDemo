@@ -43,7 +43,9 @@ static NSString *identifier = @"menuCell";
     _typeLabel.layer.cornerRadius = 10.f;
     
     //个人详情、退出
-    
+    [_InfoButton addTarget:self action:@selector(infoViewClick:) forControlEvents:UIControlEventTouchUpInside];
+    UITapGestureRecognizer *outInfoTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(outInfoViewClick:)];
+    [self.outInfoView addGestureRecognizer:outInfoTap];
    //列表
     _menuTableView.delegate = self;
     _menuTableView.dataSource = self;
@@ -52,6 +54,16 @@ static NSString *identifier = @"menuCell";
     [self.menuTableView registerNib:[UINib nibWithNibName:@"CGMenuCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:identifier]; // 从xib文件中加载
     self.menuTableView.fd_debugLogEnabled = YES;
     
+}
+- (void)infoViewClick:(UIButton *)sender{
+    if ([_delegate respondsToSelector:@selector(infoViewClick:)]) {
+        [_delegate infoViewClick:sender];
+    }
+}
+- (void)outInfoViewClick:(UITapGestureRecognizer *)sender{
+    if ([_delegate respondsToSelector:@selector(outInfoViewClick:)]) {
+        [_delegate outInfoViewClick:sender];
+    }
 }
 -(void)setUserInfoFromJSON:(NSArray *)userInfoFromJSON{
     _userInfoFromJSON = userInfoFromJSON;
@@ -108,7 +120,11 @@ static NSString *identifier = @"menuCell";
     /*赋值*/
     cell.entity = self.feedEntitySections[indexPath.section][indexPath.row];
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([_delegate respondsToSelector:@selector(menuView:didSelectRowAtIndexPath:)]) {
+        [_delegate menuView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+}
 #pragma mark - UITableViewDelegate
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

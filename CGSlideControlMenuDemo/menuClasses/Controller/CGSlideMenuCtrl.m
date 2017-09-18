@@ -12,7 +12,7 @@
 #import "menuModel.h"
 #import "personModel.h"
 
-@interface CGSlideMenuCtrl ()
+@interface CGSlideMenuCtrl ()<CGMenuViewDelegate>
 @property (nonatomic, copy) NSArray *JSONArray;//
 @end
 
@@ -24,6 +24,7 @@
 }
 - (IBAction)barButtonAction:(UIBarButtonItem *)sender {
     CGMenuView *menuView = [CGMenuView loadMenuViewFromXib];
+    menuView.delegate = self;
     menuView.prototypeEntitiesFromJSON = [self getMenuData:1];
     menuView.userInfoFromJSON = [self getMenuData:2];
     [[CGSlideMenuView defaultSlideMenu]showModal:sender.tag==0?CGSlideMenuModalLeft:CGSlideMenuModalRight controlMenu:menuView];
@@ -59,7 +60,59 @@
     NSLog(@"%@",self.JSONArray);
     return self.JSONArray;
 }
-
+-(void)infoViewClick:(UIButton *)sender{
+    NSLog(@"详情");
+}
+-(void)outInfoViewClick:(UITapGestureRecognizer *)sender{
+    NSLog(@"退出");
+}
+-(void)menuView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (indexPath.row) {
+        case 0:
+        {
+            
+            NSLog(@"交易记录");
+        }
+            break;
+        case 1:
+        {
+            NSLog(@"我的订单");
+        }
+            break;
+        case 2:
+        {
+            NSLog(@"地址管理");
+        }
+            break;
+        case 3:
+        {
+            NSLog(@"帮助中心");
+        }
+            break;
+        case 4:
+        {
+            NSLog(@"通知中心");
+        }
+            break;
+        case 5:
+        {
+            NSLog(@"给个赞");
+        }
+            break;
+        case 6:
+        {
+            NSLog(@"分享给好友");
+        }
+            break;
+        case 7:
+        {
+            NSLog(@"设置");
+        }
+            break;
+        default:
+            break;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
