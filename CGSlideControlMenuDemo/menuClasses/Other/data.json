@@ -1,0 +1,43 @@
+{
+    "feed": [
+             {
+             "leftImage": "menu_record",
+             "RightTitle": "交易记录"
+             },
+             {
+             "leftImage": "menu_order",
+             "RightTitle": "我的订单"
+             },
+             {
+             "leftImage": "menu_address",
+             "RightTitle": "地址管理"
+             },
+             {
+             "leftImage": "menu_info",
+             "RightTitle": "帮助中心"
+             },
+             {
+             "leftImage": "menu_notif",
+             "RightTitle": "通知中心"
+             },
+             {
+             "leftImage": "menu_good",
+             "RightTitle": "给个赞"
+             },
+             {
+             "leftImage": "menu_share",
+             "RightTitle": "分享给好友"
+             },
+             {
+             "leftImage": "menu_setting",
+             "RightTitle": "设置"
+             }
+             ],
+    "info": [
+             {
+             "userName": "chect tony🤠",
+             "userType": "新用户",
+             "imageName": "dp"
+             }
+             ]
+}
